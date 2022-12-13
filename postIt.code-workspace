@@ -1,4 +1,3 @@
-
 {
   "folders": [
     {
@@ -42,14 +41,14 @@
       "editor.defaultFormatter": "Vue.volar"
     },
     "workbench.colorCustomizations": {
-      "activityBar.activeBackground": "#a4d7c4",
-      "activityBar.background": "#a4d7c4",
+      "activityBar.activeBackground": "#80c8ad",
+      "activityBar.background": "#80c8ad",
       "activityBar.foreground": "#15202b",
       "activityBar.inactiveForeground": "#15202b99",
-      "activityBarBadge.background": "#a97ac5",
-      "activityBarBadge.foreground": "#15202b",
+      "activityBarBadge.background": "#9a63bc",
+      "activityBarBadge.foreground": "#e7e7e7",
       "commandCenter.border": "#15202b99",
-      "sash.hoverBorder": "#a4d7c4",
+      "sash.hoverBorder": "#80c8ad",
       "statusBar.background": "#80c8ad",
       "statusBar.debuggingBackground": "#c8809b",
       "statusBar.debuggingForeground": "#15202b",

@@ -1,5 +1,6 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import { albumsService } from "../services/AlbumsService.js";
+import { collabsService } from "../services/CollabsService.js";
 import { picturesService } from "../services/PicturesService.js";
 import BaseController from "../utils/BaseController.js";
 
@@ -11,6 +12,7 @@ export class AlbumsController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getOne)
       .get('/:id/pictures', this.getPicturesInAlbum)
+      .get('/:id/collaborators', this.getCollaborators)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .delete('/:id', this.archive)
@@ -39,6 +41,15 @@ export class AlbumsController extends BaseController {
       // NOTE uses the get all pictures but formats a query object for it to only find pictures with it's id
       const pictures = await picturesService.getAll({ albumId: req.params.id })
       return res.send(pictures)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getCollaborators(req, res, next) {
+    try {
+      let collabs = await collabsService.getMembersByAlbumId(req.params.id)
+      return res.send(collabs)
     } catch (error) {
       next(error)
     }
