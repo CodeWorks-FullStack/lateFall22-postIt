@@ -8,11 +8,16 @@
   <footer class="bg-dark text-light">
     Made with 💖 by CodeWorks
   </footer>
+  <ModalComponent>
+    <AlbumForm />
+  </ModalComponent>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+import AlbumForm from './components/AlbumForm.vue'
+import ModalComponent from './components/ModalComponent.vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
@@ -21,7 +26,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, AlbumForm, ModalComponent }
 }
 </script>
 <style lang="scss">

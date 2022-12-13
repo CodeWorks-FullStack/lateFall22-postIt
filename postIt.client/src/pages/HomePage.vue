@@ -1,7 +1,13 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <div class="col-12 p-3">
+        <div class="fw-bold fs-2">My Collabs</div>
+      </div>
       <!-- TODO get my albums that I'm a collaborator on -->
+      <div v-for="c in myCollabs" class="col-12 col-md-3 mb-3 p-4">
+        <AlbumCard :album="c.album" />
+      </div>
     </div>
   </div>
   <div class="container">
@@ -26,17 +32,20 @@
 <script>
 import { onMounted, computed, ref } from 'vue';
 import { AppState } from '../AppState.js';
+import AlbumCard from '../components/AlbumCard.vue';
 import { albumsService } from '../services/AlbumsService.js';
+import { collabsService } from '../services/CollabsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 
 export default {
   setup() {
-    const filterBy = ref('')
+    const filterBy = ref("");
     async function getAlbums() {
       try {
-        await albumsService.getAll()
-      } catch (error) {
+        await albumsService.getAll();
+      }
+      catch (error) {
         Pop.toast(`<p class="text-primary">
           <img src="https://media.tenor.com/r3K7ttpGKUgAAAAM/lick-cat-lick.gif" class="img-fluid" alt="">
           <div class="d-flex fs-1">
@@ -47,28 +56,32 @@ export default {
           </div>
           ${error.message}
           </p>
-          `, 'error', 'center',)
-        logger.error(error)
+          `, "error", "center");
+        logger.error(error);
       }
     }
     onMounted(() => {
-      getAlbums()
-    })
+      getAlbums();
+    });
     return {
       filterBy,
+      myCollabs: computed(() => AppState.myCollabs),
       albums: computed(() => {
-        if (filterBy.value == '') {
-          return AppState.albums
+        if (filterBy.value == "") {
+          return AppState.albums;
         }
         else {
-          return AppState.albums.filter(a => a.category == filterBy.value)
+          return AppState.albums.filter(a => a.category == filterBy.value);
         }
       })
-    }
-  }
+    };
+  },
+  components: { AlbumCard }
 }
 </script>
 
 <style scoped lang="scss">
-
+button {
+  width: 12vw;
+}
 </style>

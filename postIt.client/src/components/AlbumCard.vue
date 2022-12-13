@@ -4,7 +4,7 @@
       <img :src="album.coverImg" alt="" class="img-fluid card-img rounded-top">
       <div class="text-center fw-bold p-1">
         <div>{{ album.title }}</div>
-        <div>0 <i class="mdi mdi-heart"></i></div>
+        <div>{{ album.memberCount }} <i class="mdi mdi-heart"></i></div>
       </div>
     </div>
   </router-link>
