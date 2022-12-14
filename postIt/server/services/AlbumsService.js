@@ -11,7 +11,10 @@ class AlbumsService {
   }
   async getOne(id) {
     const album = await dbContext.Albums.findById(id).populate('creator')
+    // const album = await dbContext.Albums.findOne({ _id: id, archived: false }).populate('creator') quick and dirty
     if (!album) throw new BadRequest(`no album by id: ${id}`)
+    // if (album.archived) throw new Forbidden("Can't modify an archived album")
+
     return album
 
   }
