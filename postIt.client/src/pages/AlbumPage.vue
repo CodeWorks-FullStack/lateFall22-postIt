@@ -18,7 +18,7 @@
                 <div>
                   <button v-if="account.id" data-bs-toggle="modal" data-bs-target="#pictureModal"
                     :disabled="album.archived && !foundMe"
-                    :class="`btn btn-${album.archived && !foundMe ? 'danger' : 'info'} elevation-6 fw-bold`">Add
+                    :class="`btn btn-${album.archived || !foundMe ? 'danger' : 'info'} elevation-6 fw-bold`">Add
                     picture</button>
                 </div>
               </div>
