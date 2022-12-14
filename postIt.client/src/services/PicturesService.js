@@ -8,6 +8,12 @@ class PicturesService {
     logger.log('[get pictures by album id]', res.data)
     AppState.pictures = res.data
   }
+
+  async createPicture(body) {
+    const res = await api.post('api/pictures', body)
+    logger.log(res.data)
+    AppState.pictures.push(res.data)
+  }
 }
 
 export const picturesService = new PicturesService()

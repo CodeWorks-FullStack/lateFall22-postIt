@@ -11,7 +11,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+        <button v-if="account.id" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#albumModal"><i
             class="mdi mdi-plus-outline"> new album</i></button>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -21,10 +21,14 @@
 </template>
 
 <script>
+import { AppState } from '../AppState.js';
+import { computed } from 'vue';
 import Login from './Login.vue'
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login }
 }

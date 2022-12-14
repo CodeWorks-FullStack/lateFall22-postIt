@@ -20,6 +20,26 @@ class CollabsService {
       Pop.error(error.message)
     }
   }
+
+  async createCollab(body) {
+    const res = await api.post('api/collaborators', body)
+    logger.log('[create collab]', res.data)
+    // NOTE store collab in collection that renders on the album page
+    AppState.collabs.push(res.data)
+    // NOTE store collab in collection that renders on home page
+    AppState.myCollabs.push(res.data)
+    // NOTE update one property on the active album
+    AppState.activeAlbum.memberCount++
+  }
+
+  async removeCollab(collabId) {
+    const res = await api.delete('api/collaborators/' + collabId)
+    logger.log(res.data)
+    AppState.collabs = AppState.collabs.filter(c => c.id !== collabId)
+    AppState.myCollabs = AppState.myCollabs.filter(c => c.id !== collabId)
+
+    AppState.activeAlbum.memberCount--
+  }
 }
 
 export const collabsService = new CollabsService()

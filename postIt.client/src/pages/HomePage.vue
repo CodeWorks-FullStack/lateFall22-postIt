@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
+    <div v-if="account.id && myCollabs.length > 0" class="row">
       <div class="col-12 p-3">
         <div class="fw-bold fs-2">My Collabs</div>
       </div>
@@ -66,6 +66,7 @@ export default {
     return {
       filterBy,
       myCollabs: computed(() => AppState.myCollabs),
+      account: computed(() => AppState.account),
       albums: computed(() => {
         if (filterBy.value == "") {
           return AppState.albums;
